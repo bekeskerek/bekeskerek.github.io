@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500&amp;subset=cyrillic" rel="stylesheet">
+    <script src="./scripts/vendor/angular.min.js" type="application/javascript"></script>
+    <script src="./scripts/vendor/angular-route.min.js" type="application/javascript"></script>
+    <script src="./scripts/vendor/angular-translate.min.js" type="application/javascript"></script>
+    <script src="./scripts/vendor/angular-translate-loader-static-files.min.js" type="application/javascript"></script>
+    <script src="./scripts/js/app.js" type="application/javascript"></script>
+</head>
+
+<body>
+    <div app ng-controller="mainCtrl">
+        <header class="">
+            <div class="container">
+                <div class="left">
+                    <h1 class="heading">{{'ORG' | translate }}</h1>
+                </div><div class="right">
+                    <div class="menu">
+                        <h2 class="subheading"><a href="#contact">{{'CONTACT' | translate }}</a></h2>
+                        <select name="lang" id="lang" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </header>
+        <div ng-view></div>
+        <footer>
+            <div class="container">
+                
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
+
+<script id="home.html" type="text/ng-template">
+
+    <section class="hero-section" paralax-track>
+        <div class="layout-fill hero">
+            <div class="layout-fill hero-video">
+                <video src="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.mp4" poster="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.jpg" preload autoplay loop></video>
+            </div>
+            
+            <div class="hero-text container" paralax-layer="0" paralax-offset="50%">
+                <h1 class="heading">{{'TITLE' | translate }}</h1>
+            </div>
+        </div>
+    </section>
+    <section paralax-track>
+        <div class="container">
+            <div class="left">
+
+            </div>
+            <div class="right">
+                <div class="block-text">{{'BLOCK1' | translate }}</div>
+            </div>
+
+        </div>
+
+    </section>
+    <section paralax-track>
+        <div class="container">
+            <p>{{'P1' | translate}}</p>
+        </div>
+    </section>
+    <section paralax-track>
+        <div class="container">
+            <div class="left">
+                <div class="block-text">{{'BLOCK2' | translate }}</div>
+            </div>
+            <div class="right">
+
+            </div>
+        </div>
+    </section>
+
+</script>
