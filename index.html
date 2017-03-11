@@ -3,11 +3,13 @@
 
 <head>
     <title></title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,500&amp;subset=cyrillic" rel="stylesheet">
     <script src="./scripts/vendor/angular.min.js" type="application/javascript"></script>
     <script src="./scripts/vendor/angular-route.min.js" type="application/javascript"></script>
+    <script src="./scripts/vendor/angular-sanitize.min.js" type="application/javascript"></script>
     <script src="./scripts/vendor/angular-translate.min.js" type="application/javascript"></script>
     <script src="./scripts/vendor/angular-translate-loader-static-files.min.js" type="application/javascript"></script>
     <script src="./scripts/js/app.js" type="application/javascript"></script>
@@ -21,11 +23,9 @@
                     <h1 class="heading">{{'ORG' | translate }}</h1>
                 </div><div class="right">
                     <div class="menu">
-                        <h2 class="subheading"><a href="#contact">{{'CONTACT' | translate }}</a></h2>
+                        <h3 class="subheading"><a href="#contact">{{'CONTACT_MENU' | translate }}</a></h3>
                         <select name="lang" id="lang" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
                     </div>
-                    
-                    
                 </div>
             </div>
         </header>
@@ -53,6 +53,12 @@
             </div>
         </div>
     </section>
+    
+    <section paralax-track>
+        <div class="container">
+            <p>{{'P1' | translate}}</p>
+        </div>
+    </section>
     <section paralax-track>
         <div class="container">
             <div class="left">
@@ -63,11 +69,11 @@
             </div>
 
         </div>
-
     </section>
+    
     <section paralax-track>
         <div class="container">
-            <p>{{'P1' | translate}}</p>
+            <p ng-bind-html="'P2' | translate"></p>
         </div>
     </section>
     <section paralax-track>
@@ -80,5 +86,9 @@
             </div>
         </div>
     </section>
-
+    <section id="contact" paralax-track>
+        <div class="container">
+            <p ng-bind-html="'CONTACT' | translate"></p>
+        </div>
+    </section>
 </script>

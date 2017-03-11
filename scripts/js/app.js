@@ -229,14 +229,14 @@ module.directive('app', [function(){
 (function () {
   'use strict';
 
-  var app = angular.module('app', ['ngRoute', 'app-module', 'pascalprecht.translate']);
+  var app = angular.module('app', ['ngRoute', 'ngSanitize','app-module', 'pascalprecht.translate']);
 
   app.config(["$translateProvider", "$routeProvider", "$locationProvider", function ($translateProvider, $routeProvider, $locationProvider) {
 
-    $locationProvider.html5Mode({
-      enabled: true,
-      requireBase: false
-    });
+    // $locationProvider.html5Mode({
+    //   enabled: true,
+    //   requireBase: false
+    // });
 
     $routeProvider
       .when('/:lang?', {
@@ -245,13 +245,14 @@ module.directive('app', [function(){
       .otherwise({
             redirectTo: "/"
       });
-
+//
     $translateProvider.useStaticFilesLoader({
       prefix: './data/',
       suffix: '.json'
     });
     $translateProvider.preferredLanguage('en');
-    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+    //$translateProvider.useSanitizeValueStrategy('escape');
     //$translateProvider.useLocalStorage();
   }]);
 
