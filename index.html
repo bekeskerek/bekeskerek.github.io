@@ -17,14 +17,14 @@
 
 <body>
     <div app ng-controller="mainCtrl">
-        <header class="">
+        <header class="dark">
             <div class="container">
                 <div class="left">
                     <h1 class="heading">{{'ORG' | translate }}</h1>
                 </div><div class="right">
                     <div class="menu">
-                        <h3 class="subheading"><a href="#contact">{{'CONTACT_MENU' | translate }}</a></h3>
-                        <select name="lang" id="lang" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
+                        <h3 class="subheading"><a ng-click="paralax.move($event,'contact')">{{'CONTACT_MENU' | translate }}</a></h3>
+                        <select name="lang" id="lang" class="dark" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
                     </div>
                 </div>
             </div>
@@ -59,13 +59,16 @@
             <p>{{'P1' | translate}}</p>
         </div>
     </section>
-    <section paralax-track>
+    <section paralax-track class="transparent dark-text">
+        <div class="fixed layout-fill cofe-racer">
+
+        </div>
         <div class="container">
             <div class="left">
 
             </div>
             <div class="right">
-                <div class="block-text">{{'BLOCK1' | translate }}</div>
+                <h2 class="block-head">{{'BLOCK1' | translate }}</h2>
             </div>
 
         </div>
@@ -79,7 +82,7 @@
     <section paralax-track>
         <div class="container">
             <div class="left">
-                <div class="block-text">{{'BLOCK2' | translate }}</div>
+                <h2 class="block-head">{{'BLOCK2' | translate }}</h2>
             </div>
             <div class="right">
 

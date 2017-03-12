@@ -1,7 +1,7 @@
 var paralax_module = angular.module('paralax', []);
 
 
-paralax_module.directive('paralaxTrack', ['$timeout',function ($timeout) {
+paralax_module.directive('paralaxTrack', ['$rootScope','$timeout',function ($rootScope, $timeout) {
     var c_names = {
         paralaxIn: 'px-in',
         paralaxTopIn: 'px-top-in',
@@ -152,8 +152,12 @@ paralax_module.directive('paralaxTrack', ['$timeout',function ($timeout) {
         link: link,
         scope: true,
         controller: ["$scope", function ($scope) {
-            $scope.paralax = {
-
+            $rootScope.paralax = $rootScope.paralax || {
+                move:function($event, id){
+                    var el = document.getElementById(id),
+                        box = el.getBoundingClientRect();
+                    window.scrollTo(0, box.top);
+                }
             }
         }]
     }
