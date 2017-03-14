@@ -18,7 +18,7 @@
 <body>
     <div app ng-controller="mainCtrl">
         <header class="dark">
-            <div class="container">
+            <div class="container padding-sides">
                 <div class="left">
                     <h1 class="heading">{{'ORG' | translate }}</h1>
                 </div><div class="right">
@@ -31,7 +31,7 @@
         </header>
         <div ng-view></div>
         <footer>
-            <div class="container">
+            <div class="container padding-sides">
                 
             </div>
         </footer>
@@ -48,14 +48,14 @@
                 <video src="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.mp4" poster="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.jpg" preload autoplay loop></video>
             </div>
             
-            <div class="hero-text container" paralax-layer="0" paralax-offset="50%">
+            <div class="hero-text container" paralax-layer="-50" paralax-offset="0%">
                 <h1 class="heading">{{'TITLE' | translate }}</h1>
             </div>
         </div>
     </section>
     
     <section paralax-track>
-        <div class="container">
+        <div class="container padding-sides">
             <p>{{'P1' | translate}}</p>
         </div>
     </section>
@@ -63,7 +63,7 @@
         <div class="fixed layout-fill cofe-racer">
 
         </div>
-        <div class="container">
+        <div class="container padding-sides">
             <div class="left">
 
             </div>
@@ -75,12 +75,12 @@
     </section>
     
     <section paralax-track>
-        <div class="container">
+        <div class="container padding-sides">
             <p ng-bind-html="'P2' | translate"></p>
         </div>
     </section>
     <section paralax-track>
-        <div class="container">
+        <div class="container padding-sides">
             <div class="left">
                 <h2 class="block-head">{{'BLOCK2' | translate }}</h2>
             </div>
@@ -90,7 +90,7 @@
         </div>
     </section>
     <section id="contact" paralax-track>
-        <div class="container">
+        <div class="container padding-sides">
             <p ng-bind-html="'CONTACT' | translate"></p>
         </div>
     </section>
