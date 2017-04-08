@@ -1,10 +1,17 @@
 {
-    "ORG":"Bekes Kerek BT",
+    "ORG":"Bekes Kerek BT", 
     "CONTACT_MENU":"Contact",
     "TITLE":"Under construction!",
-    "BLOCK1":"Custom spokes",
-    "BLOCK2":"Dolore ad ipsum ea sit ullamco ea ex consectetur ipsum sit id.",
-    "P1":"Ea non sunt id commodo reprehenderit fugiat ipsum sint. Nisi nisi occaecat laborum in cillum ullamco amet aliqua. Ullamco ad adipisicing quis nisi aute nostrud Lorem occaecat id et quis cillum cillum. Deserunt ex ipsum velit reprehenderit commodo esse labore ut dolore adipisicing voluptate nostrud magna. Eu enim occaecat exercitation adipisicing esse eiusmod consectetur et aliquip dolore sunt consequat velit sint. Labore esse aute esse ipsum laboris aliquip eiusmod anim incididunt ut sunt velit.",
-    "P2":"Ea non sunt id commodo reprehenderit fugiat ipsum sint. Nisi nisi occaecat laborum in cillum ullamco amet aliqua. Ullamco ad adipisicing quis nisi aute nostrud Lorem occaecat id et quis cillum cillum. Deserunt ex ipsum velit reprehenderit commodo esse labore ut dolore adipisicing voluptate nostrud magna. Eu enim occaecat exercitation adipisicing esse eiusmod consectetur et aliquip dolore sunt consequat velit sint. Labore esse aute esse ipsum laboris aliquip eiusmod anim incididunt ut sunt velit.",
-    "CONTACT":"Contact us on the following email: <a href=\"mailto:csatari.sandor77gmail.com\">csatari.sandor77gmail.com</a>"
+    "P1":"Bekes Kerek started in 2005 to serve the growing Hungarian coffee racer community with high quality spokes and nipples. Since then we manfactured spokes for different vehicles from velocipeds to veteran sport cars. ",
+    "BLOCK1":"CUSTOM SPOKES",
+    "BLOCK2":"WHAT YOU CNA BUY",
+    "B1":"Spokes in 2,5mm; 3,0mm; 3,5mm; 4,0mm; 4,5mm diameter.",
+    "B2":"Wen bend the neck and the length is customizable",
+    "B3":"The head is cold forged and the thread is rolled.",
+    "B4":"The surface can be untreated, galvanized or chromed.",
+    "B5":"",
+    "B6":"",
+    "P2":"P2",
+    "CONTACT":"Contact us on the following email: <a href=\"mailto:csatari.sandor77gmail.com\">csatari.sandor77gmail.com"
 }
+

@@ -76,17 +76,19 @@
     
     <section paralax-track>
         <div class="container padding-sides">
-            <p ng-bind-html="'P2' | translate"></p>
+           <p>{{'P2' | translate}}</p>
         </div>
     </section>
+
     <section paralax-track>
         <div class="container padding-sides">
-            <div class="left">
-                <h2 class="block-head">{{'BLOCK2' | translate }}</h2>
-            </div>
-            <div class="right">
-
-            </div>
+            <h2 class="block-head">{{'BLOCK2' | translate }}</h2>
+            <ul>
+                <li>{{'B1' | translate}}</li>
+                <li>{{'B2' | translate}}</li>
+                <li>{{'B3' | translate}}</li>
+                <li>{{'B4' | translate}}</li>
+            </ul>
         </div>
     </section>
     <section id="contact" paralax-track>
