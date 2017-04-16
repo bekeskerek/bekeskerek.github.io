@@ -232,6 +232,37 @@ module.directive('app', [function(){
         }]
     }
 }]);
+module.directive('spoke', [function () {
+
+    function link($scope, element, attrs) {
+        element.addClass('spoke');
+
+        element.html('<canvas id="spoke-' + $scope.$id + '"></canvas>')
+
+        element.find('canvas').css({
+            width: '100%',
+            height: '100%'
+        });
+
+    }
+
+    return {
+        restrict: 'A',
+        link: link,
+        scope: {},
+        controller: ["$scope", function ($scope) {
+            $scope.spoke = {
+                l1: 250,
+                l2: 200,
+                b: 50,
+                d: 4,
+                a: 45
+            };
+
+            
+        }]
+    }
+}]);
 (function () {
   'use strict';
 
