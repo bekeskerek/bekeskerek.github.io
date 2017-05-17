@@ -315,18 +315,14 @@ module.directive('spoke', [function () {
                 x = x + (spoke.l2*m) - (spoke.t*m);
                 ctx.lineTo(x,y+dy);
 
-                // ctx.stroke();
-                // ctx.closePath();
-
-                 ctx.moveTo(x, y);
-                // ctx.beginPath();
+                ctx.moveTo(x, y);
+              
                 //draw b2
 
                 //draw inner arc
                 radius = 10;
                 ax = x;
                 ay = y - radius;
-               // ctx.moveTo(ax, ay);
                 startAngle = toRad(90);
                 anticlockwise = true;
                 endAngle = toRad(90 - spoke.a);
