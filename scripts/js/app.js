@@ -237,13 +237,28 @@ module.directive('spoke', [function () {
     function link($scope, element, attrs) {
         element.addClass('spoke');
 
-        element.html('<canvas id="spoke-' + $scope.$id + '"></canvas>')
-
-        element.find('canvas').css({
-            width: '100%',
-            height: '100%'
+        element.css({
+            width:'100%',
+            height:'300px'
         });
 
+        element.html('<canvas id="spoke-' + $scope.$id + '" ></canvas>')
+        
+        $scope.canvas = element.find('canvas')[0];
+
+        $scope.$on('$destroy', function(){
+            angular.element(window).off('resize', resize);
+        });
+
+        angular.element(window).on('resize', resize);
+
+        function resize(){
+            $scope.canvas.width = element[0].offsetWidth;
+            $scope.canvas.height = element[0].offsetHeight;
+            $scope.draw();
+        }
+
+        resize();
     }
 
     return {
@@ -252,14 +267,90 @@ module.directive('spoke', [function () {
         scope: {},
         controller: ["$scope", function ($scope) {
             $scope.spoke = {
-                l1: 250,
-                l2: 200,
-                b: 50,
-                d: 4,
-                a: 45
+                // NOTE everything in mm
+                // NOTE 96px per inch that is 38 dpcm. so multiply with 3.8
+                l1: 250, //total length 
+                l2: 200, //length to the neck
+                b: 50, //length of the neck
+                d0: 4, //diameter
+                d1: 4, //smaller diameter of the butted spoke  
+                a: 75, //alpha
+                t: 20, //length of the thread,
+                tn: 20, //number of threads
+                t0: 0.5, //depth of the thread,
+                b1: 0, //butt length near the head for butted spokes
+                b2: 0, //butt length near the thread for butted spokes,
+
             };
 
-            
+            $scope.draw = function(){
+                draw($scope.canvas, $scope.spoke);
+            }
+
+            function draw(canvas, spoke){
+                var i,x,y, dx, dy,ax, ay, radius, startAngle, endAngle, anticlockwise,m = 3.8,
+                dt= (spoke.t / 2 * m / spoke.tn);
+
+                x = 50;
+                y = 150;
+
+                var ctx = canvas.getContext('2d');
+
+                ctx.moveTo(x, y);
+                ctx.beginPath();
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth =1;
+                //draw thread top. 
+                for(i=1;i < (spoke.tn*2+1);i++){
+                    dx = dt;
+                    dy = (spoke.t0*m) * (i%2) ;
+                    x = x+dx;                   
+                    ctx.lineTo(x,y+dy);
+                }
+
+                
+                //draw b2.
+
+                //draw body
+                x = x + (spoke.l2*m) - (spoke.t*m);
+                ctx.lineTo(x,y+dy);
+
+                // ctx.stroke();
+                // ctx.closePath();
+
+                 ctx.moveTo(x, y);
+                // ctx.beginPath();
+                //draw b2
+
+                //draw inner arc
+                radius = 10;
+                ax = x;
+                ay = y - radius;
+               // ctx.moveTo(ax, ay);
+                startAngle = toRad(90);
+                anticlockwise = true;
+                endAngle = toRad(90 - spoke.a);
+                ctx.arc(ax, ay, radius, startAngle, endAngle, anticlockwise);
+                //draw neck
+
+                //draw head
+
+                //draw bottom line.
+                ctx.stroke();
+                ctx.closePath();
+                
+
+
+            }
+
+
+            function toRad(deg){
+                return deg * (Math.PI / 180);
+            }
+
+            function toDeg(rad){
+                return rad * (180 / Math.PI);
+            }
         }]
     }
 }]);
