@@ -167,52 +167,84 @@ paralax_module.directive('paralaxTrack', ['$rootScope','$timeout',function ($roo
 //x
 var module = angular.module('app-module', ['paralax']);
 
-module.controller('mainCtrl', ['$scope', '$location', '$translate', '$routeParams', function ($scope, $location, $translate, $routeParams) {
-    
+module.controller('mainCtrl', ['$scope', '$filter', '$location', '$translate', '$routeParams', function ($scope, $filter, $location, $translate, $routeParams) {
+
     $scope.model = {
-        langs:[
+        langs: [
             {
-                id:'en',
-                label:'EN'
+                id: 'en',
+                label: 'EN'
             },
             {
-                id:'hu',
-                label:'HU'
+                id: 'hu',
+                label: 'HU'
             },
             {
-                id:'ru',
-                label:'RU'
+                id: 'ru',
+                label: 'RU'
             }
         ],
         lang: null
     }
 
-    $scope.$on('$routeChangeSuccess', function(evt){
-        var lang = $routeParams.lang || 'en';
-        $scope.model.lang = $scope.model.langs.filter(function(el){           
-            return (el.id == lang);
-        })[0];
-        set_lang($scope.model.lang.id);
+    $scope.$on('$routeChangeSuccess', function () {
+
+        set_lang();
     });
 
     $scope.changeLang = function (lang) {
-       set_path(lang);
+        set_path(lang);
     };
 
-    function set_path(lang){
+    set_lang();
+
+    function set_path(lang) {
         var path = [];
 
         if (lang) path.push(lang);
         $location.path(path.join('/'));
     }
 
-    function get_lang(){
+    function get_lang() {
         return document.querySelector("html").getAttribute('lang');
     }
 
-    function set_lang(lang){
+    function set_lang() {
+        var lang = $routeParams.lang || 'en';
+        $scope.model.lang = $scope.model.langs.filter(function (el) {
+            return (el.id == lang);
+        })[0];
         document.querySelector("html").setAttribute('lang', lang);
         $translate.use(lang);
+
+        set_meta(lang);
+    }
+
+    function set_meta(lang) {
+
+        document.querySelector('[property="og:url"]').setAttribute('content', window.location.href);
+
+        $translate('HEAD_TITLE').then(function (a) {
+            document.title = a;
+            document.querySelector('[property="og:title"]').setAttribute('content', a);
+        }, function (translationId) {
+            document.title = '';
+            document.querySelector('[property="og:title"]').setAttribute('content', '');
+        });
+        $translate('HEAD_DESCR').then(function (a) {
+            document.querySelector('[name="description"]').setAttribute('content', a);
+            document.querySelector('[property="og:description"]').setAttribute('content', a);
+        }, function (translationId) {
+            document.querySelector('[name="description"]').setAttribute('content', '');
+            document.querySelector('[property="og:description"]').setAttribute('content', '');
+        });
+        $translate('HEAD_KEYWORDS').then(function (a) {
+            document.querySelector('[name="keywords"]').setAttribute('content', a);
+        }, function (translationId) {
+            document.querySelector('[name="keywords"]').setAttribute('content', '');
+        });
+
+
     }
 
 }]);
@@ -243,7 +275,7 @@ module.directive('spoke', ['$compile', function ($compile) {
             height: '300px',
         });
 
-        element.html('<canvas id="spoke-' + $scope.$id + '" class="canvas"></canvas><span class="title">The Spoke</span><div class="inputs"><label class="l l2" ng-show="spoke.a != 0">L: <input ng-model="spoke.l2" ng-change="draw()" type="number" min="40" max="1000">&nbsp;mm&nbsp;&nbsp;&nbsp;</label><label class="l l1" ng-show="spoke.a == 0">L: <input ng-model="spoke.l1" ng-change="draw()" type="number" min="40" max="1000">&nbsp;mm&nbsp;&nbsp;&nbsp;</label><label class="d">D: <input ng-model="spoke.d0" ng-change="draw()" type="number" min="2.5" max="4.5" step="0.5">&nbsp;mm&nbsp;&nbsp;&nbsp;</label><label class="a">A: <input ng-model="spoke.a" ng-change="draw()" type="number" min="0" max="120">&nbsp;mm&nbsp;&nbsp;&nbsp;</label><label class="b" ng-show="spoke.a!=0">B: <input ng-model="spoke.n" ng-change="draw()" type="number" min="3" max="30">&nbsp;mm</label></div>')
+        element.html('<canvas id="spoke-' + $scope.$id + '" class="canvas"></canvas><span class="title">The Spoke</span><div class="inputs"><label class="l l2" ng-show="spoke.a != 0">L: <input ng-model="spoke.l2" ng-change="draw()" type="number" min="40" max="1000">&nbsp;mm&nbsp;&nbsp;&nbsp;</label> <label class="l l1" ng-show="spoke.a == 0">L: <input ng-model="spoke.l1" ng-change="draw()" type="number" min="40" max="1000">&nbsp;mm&nbsp;&nbsp;&nbsp;</label> <label class="d">D: <input ng-model="spoke.d0" ng-change="draw()" type="number" min="2.5" max="4.5" step="0.5">&nbsp;mm&nbsp;&nbsp;&nbsp;</label> <label class="a">A: <input ng-model="spoke.a" ng-change="draw()" type="number" min="0" max="120">&nbsp;mm&nbsp;&nbsp;&nbsp;</label> <label class="b" ng-show="spoke.a!=0">B: <input ng-model="spoke.n" ng-change="draw()" type="number" min="3" max="30">&nbsp;mm</label> </div>')
 
         $compile(element.contents())($scope)
 
@@ -261,11 +293,11 @@ module.directive('spoke', ['$compile', function ($compile) {
             $scope.draw();
 
             angular.element(document.querySelector('.inputs')).css({
-                position:'absolute',
-                top:'250px',
-                left:'50px',
+                position: 'absolute',
+                bottom: '16px',
+                left: '50px',
                 color: 'rgba(255,255,255,0.7)',
-                'font-family':"'Roboto Slab',serif"
+                'font-family': "'Roboto Slab',serif"
             });
             element.find('input').css({
                 'background-color': 'rgba(0,0,0,0)',
@@ -324,9 +356,9 @@ module.directive('spoke', ['$compile', function ($compile) {
 
                 //TODO normalize input 
                 if (spoke.a === 0) {
-                   spoke.l2 = spoke.l1;
+                    spoke.l2 = spoke.l1;
                 } else {
-                    
+
                 }
 
                 if (spoke.l2 > (canvas.width - 200) / m) {
@@ -354,7 +386,7 @@ module.directive('spoke', ['$compile', function ($compile) {
                 ctx.strokeStyle = '#ffffff';
                 ctx.lineWidth = 1;
                 ctx.setLineDash([]);
-               
+
                 ctx.beginPath();
 
                 draw_1(x, y, spoke, straight);
@@ -456,7 +488,7 @@ module.directive('spoke', ['$compile', function ($compile) {
                     ax = x + ((spoke.l) * m);
                     ctx.lineTo(ax, ay);
                 }
-                
+
 
                 //draw ends
                 ay = ay - 5;
