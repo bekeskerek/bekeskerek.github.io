@@ -243,7 +243,7 @@ module.directive('spoke', ['$compile', function ($compile) {
             height: '300px',
         });
 
-        element.html('<canvas id="spoke-' + $scope.$id + '" class="canvas"></canvas><div><label class="a">A: <input ng-model="spoke.a" ng-change="draw()" type="number" min="0" max="120"></label> <label class="l">L: <input ng-model="spoke.l2" ng-change="draw()" type="number" min="40" max="1000"></label> <label class="d">D: <input ng-model="spoke.d0" ng-change="draw()" type="number" min="2.5" max="4.5" step="0.5"></label> <label class="b">B: <input ng-model="spoke.b" ng-change="draw()" type="number" min="3" max="30"></label></div>')
+        element.html('<canvas id="spoke-' + $scope.$id + '" class="canvas"></canvas><span class="title">The Spoke</span><div class="inputs"><label class="l l2" ng-show="spoke.a != 0">L: <input ng-model="spoke.l2" ng-change="draw()" type="number" min="40" max="1000">&nbsp;mm&nbsp;&nbsp;&nbsp;</label><label class="l l1" ng-show="spoke.a == 0">L: <input ng-model="spoke.l1" ng-change="draw()" type="number" min="40" max="1000">&nbsp;mm&nbsp;&nbsp;&nbsp;</label><label class="d">D: <input ng-model="spoke.d0" ng-change="draw()" type="number" min="2.5" max="4.5" step="0.5">&nbsp;mm&nbsp;&nbsp;&nbsp;</label><label class="a">A: <input ng-model="spoke.a" ng-change="draw()" type="number" min="0" max="120">&nbsp;mm&nbsp;&nbsp;&nbsp;</label><label class="b" ng-show="spoke.a!=0">B: <input ng-model="spoke.n" ng-change="draw()" type="number" min="3" max="30">&nbsp;mm</label></div>')
 
         $compile(element.contents())($scope)
 
@@ -259,6 +259,20 @@ module.directive('spoke', ['$compile', function ($compile) {
             $scope.canvas.width = element[0].offsetWidth;
             $scope.canvas.height = element[0].offsetHeight;
             $scope.draw();
+
+            angular.element(document.querySelector('.inputs')).css({
+                position:'absolute',
+                top:'250px',
+                left:'50px',
+                color: 'rgba(255,255,255,0.7)',
+                'font-family':"'Roboto Slab',serif"
+            });
+            element.find('input').css({
+                'background-color': 'rgba(0,0,0,0)',
+                'border': '1px solid currentColor',
+                'width': '50px',
+                'text-align': 'center'
+            })
         }
 
         resize();
@@ -270,7 +284,7 @@ module.directive('spoke', ['$compile', function ($compile) {
         scope: {},
         controller: ["$scope", function ($scope) {
 
-           
+
 
             $scope.spoke = {
                 // NOTE everything in mm
@@ -278,7 +292,7 @@ module.directive('spoke', ['$compile', function ($compile) {
                 l: null,
                 l1: 210, //total length 
                 l2: 200, //length to the neck
-                b: 10, //length of the neck
+                n: 10, //length of the neck
                 d0: 4, //diameter
                 d1: 4, //smaller diameter of the butted spoke  
                 a: 45, //alpha
@@ -287,7 +301,7 @@ module.directive('spoke', ['$compile', function ($compile) {
                 t0: 0.6, //depth of the thread,
                 b1: 0, //butt length near the head for butted spokes
                 b2: 0, //butt length near the thread for butted spokes,
-                r: 5, //bent radius,
+                r: 1, //bent radius,
                 f: 1.5
             };
 
@@ -295,18 +309,41 @@ module.directive('spoke', ['$compile', function ($compile) {
                 draw($scope.canvas, $scope.spoke);
             }
 
+            function get_ppin() {
+                var div = document.createElement('div');
+                div.style.width = '1in';
+                document.body.appendChild(div)
+                var w = div.offsetWidth;
+                document.body.removeChild(div);
+                return w;
+            }
+
             function draw(canvas, spoke) {
-                var x, y, m = 3.8,  overlength;
+
+                var x, y, ax, ay, bx, by, p, m = get_ppin() / 25.4, overlength, straight, startAngle, endAngle, anticlockwise;
 
                 //TODO normalize input 
-
-                if (spoke.l2 > (canvas.width - 150) / m) {
-                    spoke.l = (canvas.width - 150) / m;
-                    overlength = true;
-                }else{
-                     spoke.l =  spoke.l2;
-                     overlength = false;
+                if (spoke.a === 0) {
+                   spoke.l2 = spoke.l1;
+                } else {
+                    
                 }
+
+                if (spoke.l2 > (canvas.width - 200) / m) {
+                    spoke.l = (canvas.width - 200) / m;
+                    overlength = true;
+                } else {
+                    spoke.l = spoke.l2;
+                    overlength = false;
+                }
+
+                if (spoke.a === 0) {
+                    spoke.l -= spoke.n + spoke.f;
+                    straight = true;
+                } else {
+                    straight = false;
+                }
+
 
                 x = 50;
                 y = 150;
@@ -317,14 +354,14 @@ module.directive('spoke', ['$compile', function ($compile) {
                 ctx.strokeStyle = '#ffffff';
                 ctx.lineWidth = 1;
                 ctx.setLineDash([]);
-
+               
                 ctx.beginPath();
 
-                draw_1(x, y, spoke);
+                draw_1(x, y, spoke, straight);
 
                 ctx.closePath();
-                var pattern_image = create_pattern();
-                var pattern = ctx.createPattern(pattern_image, 'repeat');
+
+                var pattern = create_pattern(ctx)
 
                 ctx.fillStyle = pattern;
                 ctx.fill();
@@ -333,39 +370,35 @@ module.directive('spoke', ['$compile', function ($compile) {
                 var bg_color = '#054f79';
 
                 // draw overlength cover
-                if (overlength){
+                if (overlength) {
                     ctx.beginPath();
                     ctx.strokeStyle = bg_color;//canvas.style.backgroundColor;
                     ctx.lineWidth = 1;
-                    x = 50 + (spoke.l * m /2);
+                    x = 50 + (spoke.l * m / 2);
                     y = 150;
                     ctx.moveTo(x, y);
-                    y-=1
+                    y -= 1
                     ctx.lineTo(x, y);
                     x += 20;
                     ctx.lineTo(x, y);
-                   
-                    
-                   
-                    x += (spoke.d0 * m) /2
-                    y += (spoke.d0 * m) /2 + 1;
-                    ctx.lineTo(x, y);
-                    x -= (spoke.d0 * m) /2
-                    y += (spoke.d0 * m) /2 + 1;
-                    ctx.lineTo(x, y);
-                  
 
-                   
+
+                    x += (spoke.d0 * m) / 2
+                    y += (spoke.d0 * m) / 2 + 1;
+                    ctx.lineTo(x, y);
+                    x -= (spoke.d0 * m) / 2
+                    y += (spoke.d0 * m) / 2 + 1;
+                    ctx.lineTo(x, y);
+
                     x -= 20;
                     ctx.lineTo(x, y);
-                   
 
-                   
-                    x += (spoke.d0 * m) /2
-                    y -= (spoke.d0 * m) /2 -1;
+
+                    x += (spoke.d0 * m) / 2
+                    y -= (spoke.d0 * m) / 2 - 1;
                     ctx.lineTo(x, y);
-                    x -= (spoke.d0 * m) /2
-                    y -= (spoke.d0 * m) /2 -1;
+                    x -= (spoke.d0 * m) / 2
+                    y -= (spoke.d0 * m) / 2 - 1;
                     ctx.lineTo(x, y);
                     ctx.stroke();
 
@@ -378,57 +411,165 @@ module.directive('spoke', ['$compile', function ($compile) {
                     ctx.beginPath();
                     ctx.strokeStyle = 'white';
                     ctx.lineWidth = 1;
-                    x = 50 + (spoke.l * m /2) + 20;
+                    x = 50 + (spoke.l * m / 2) + 20;
                     y = 150;
                     ctx.moveTo(x, y);
-                    
-                   
-                    x += (spoke.d0 * m) /2
-                    y += (spoke.d0 * m) /2;
-                    ctx.lineTo(x, y);
-                    x -= (spoke.d0 * m) /2
-                    y += (spoke.d0 * m) /2;
-                    ctx.lineTo(x, y);
-                    
 
-                    
+
+                    x += (spoke.d0 * m) / 2
+                    y += (spoke.d0 * m) / 2;
+                    ctx.lineTo(x, y);
+                    x -= (spoke.d0 * m) / 2
+                    y += (spoke.d0 * m) / 2;
+                    ctx.lineTo(x, y);
+
                     x -= 20;
                     ctx.moveTo(x, y);
-                   
-                   
-                    x += (spoke.d0 * m) /2
-                    y -= (spoke.d0 * m) /2;
+
+                    x += (spoke.d0 * m) / 2
+                    y -= (spoke.d0 * m) / 2;
                     ctx.lineTo(x, y);
-                    x -= (spoke.d0 * m) /2
-                    y -= (spoke.d0 * m) /2;
+                    x -= (spoke.d0 * m) / 2
+                    y -= (spoke.d0 * m) / 2;
                     ctx.lineTo(x, y);
                     ctx.stroke();
-
 
                     ctx.closePath();
                 }
 
                 //draw legend
-                // ctx.beginPath();
-                // ctx.strokeStyle = 'rgba(255,255,255,0.3)';
-                // ctx.lineWidth = 1;
+
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+                ctx.lineWidth = 1;
                 // ctx.setLineDash([10, 10]);
-                // ctx.moveTo(10, y + (spoke.d0 * m / 2));
-                // ctx.lineTo($scope.canvas.width - 10, y + (spoke.d0 * m / 2));
+                x = 50;
+                y = 150;
 
-                // ctx.moveTo(spoke.l * m, y + (spoke.d0 * m / 2));
+                ay = y + (spoke.d0 * m) + 30;
+                ctx.moveTo(x, ay);
+
+                if (straight) {
+                    ax = x + ((spoke.l + spoke.n + spoke.f) * m);
+                    ctx.lineTo(ax, ay);
+                } else {
+                    ax = x + ((spoke.l) * m);
+                    ctx.lineTo(ax, ay);
+                }
+                
+
+                //draw ends
+                ay = ay - 5;
+                ctx.moveTo(x, ay);
+                ay = ay + 10;
+                ctx.lineTo(x, ay);
+
+                ay = ay - 10;
+                ctx.moveTo(ax, ay);
+                ay = ay + 10;
+                ctx.lineTo(ax, ay);
+
+                if (!straight) {
+                    //draw neck line
+
+                    x = x + ((spoke.l) * m);
+                    y = y + (spoke.d0 * m) + 30;
+                    ax = bx = x;
+                    by = y;
+                    ay = y - ((spoke.d0 + spoke.r) * m) - 30;
+
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), true);
+                    ctx.moveTo(p.x, p.y);
+
+                    x = x + (spoke.n * m);
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), true);
+                    ctx.lineTo(p.x, p.y);
+
+                    x = bx;
+                    y = by - 5;
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), true);
+                    ctx.moveTo(p.x, p.y);
+
+                    x = bx;
+                    y = by + 5;
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), true);
+                    ctx.lineTo(p.x, p.y);
+
+                    x = bx + (spoke.n * m);
+                    y = by - 5;
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), true);
+                    ctx.moveTo(p.x, p.y);
+
+                    y = by + 5;
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), true);
+                    ctx.lineTo(p.x, p.y);
+                }
 
 
-                // ctx.stroke();
-                // ctx.closePath();
+                ctx.stroke();
+                ctx.closePath();
 
 
 
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([4, 4]);
+
+                x = 50;
+                y = 150;
+
+                ctx.moveTo(x, y + (spoke.d0 * m));
+                ctx.lineTo(x, y + (spoke.d0 * m) + 30);
+
+                //draw dashed lines and arc
+                if (straight) {
+                    ax = x + ((spoke.l + spoke.n + spoke.f) * m);
+                    ctx.moveTo(ax, y + (spoke.d0 * m));
+                    ctx.lineTo(ax, y + (spoke.d0 * m) + 30);
+                } else {
+                    ax = x + ((spoke.l) * m);
+                    ctx.moveTo(ax, y + (spoke.d0 * m));
+                    ctx.lineTo(ax, y + (spoke.d0 * m) + 50);
+
+                    //ax ay now the origo
+
+                    x = x + ((spoke.l) * m);
+                    y = y + (spoke.d0 * m);
+                    ax = bx = x;
+                    by = y;
+                    ay = y - ((spoke.d0 + spoke.r) * m);
 
 
-                function draw_1(x, y, spoke) {
+                    startAngle = toRad(90);
+                    anticlockwise = true;
+                    endAngle = toRad(90 - spoke.a);
+                    ctx.arc(ax, ay, ((spoke.d0 + spoke.r) * m) + 50, startAngle, endAngle, anticlockwise);
+
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), true);
+                    ctx.moveTo(p.x, p.y);
+
+                    //x = x + (spoke.n * m);
+
+                    p = rotate(ax, ay, x, y + 50, toRad(spoke.a), true);
+                    ctx.lineTo(p.x, p.y);
+
+                    p = rotate(ax, ay, x + (spoke.n * m), y + 30, toRad(spoke.a), true);
+                    ctx.moveTo(p.x, p.y);
+                    p = rotate(ax, ay, x + (spoke.n * m), y, toRad(spoke.a), true);
+                    ctx.lineTo(p.x, p.y);
+
+                }
+                ctx.stroke();
+                ctx.closePath();
+
+                //position labels
+
+
+
+                function draw_1(x, y, spoke, straight) {
                     var i, x, y, dx, dy, ax, ay, bx, by, radius, radius_b, startAngle, endAngle, anticlockwise, m = 3.8, p = {},
-                        dt = (spoke.t / 2 * m / spoke.tn);
+                        dt = ((spoke.t / 2) * m) / (spoke.tn + 1);
 
                     ctx.moveTo(x, y);
 
@@ -448,14 +589,13 @@ module.directive('spoke', ['$compile', function ($compile) {
                     x = x + (spoke.l * m) - (spoke.t * m);
                     ctx.lineTo(x, y + dy);
 
-                    //ctx.moveTo(x, y);
 
                     //draw inner arc
-                    radius = spoke.r;// bottom ? spoke.r + (spoke.d0 * m) : spoke.r;
-                    radius_b =  spoke.r + (spoke.d0 * m);
+                    radius = spoke.r * m;
+                    radius_b = (spoke.r + spoke.d0) * m;
                     ax = bx = x;
                     ay = by = y - radius;
-                   
+
                     startAngle = toRad(90);
                     anticlockwise = true;
                     endAngle = toRad(90 - spoke.a);
@@ -468,34 +608,34 @@ module.directive('spoke', ['$compile', function ($compile) {
                     ax = p.x;
                     ay = p.y;
 
-                    p = rotate(ax, ay, ax + (spoke.b * m), ay, toRad(spoke.a), anticlockwise);
+                    p = rotate(ax, ay, ax + (spoke.n * m), ay, toRad(spoke.a), anticlockwise);
                     ctx.lineTo(p.x, p.y);
                     //draw head
-                    x = ax + (spoke.f * m) + (spoke.b * m);
-                    y = ay - (spoke.f * m); //(5 * (bottom ? -1 : 1));
+                    x = ax + (spoke.f * m) + (spoke.n * m);
+                    y = ay - (spoke.f * m);
 
-                    p = rotate(ax, ay, x , y, toRad(spoke.a), anticlockwise);
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), anticlockwise);
                     ctx.lineTo(p.x, p.y);
-                   
+
                     //DRAW BOTTOM PART
                     y = y + (spoke.f * m) + (spoke.d0 * m) + (spoke.f * m);
-                    p = rotate(ax, ay, x , y, toRad(spoke.a), anticlockwise);
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), anticlockwise);
                     ctx.lineTo(p.x, p.y);
 
                     x = x - (spoke.f * m);
                     y = y - (spoke.f * m);
-                    p = rotate(ax, ay, x , y, toRad(spoke.a), anticlockwise);
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), anticlockwise);
                     ctx.lineTo(p.x, p.y);
 
-                    x = x - (spoke.b * m);                  
-                    p = rotate(ax, ay, x , y, toRad(spoke.a), anticlockwise);
+                    x = x - (spoke.n * m);
+                    p = rotate(ax, ay, x, y, toRad(spoke.a), anticlockwise);
                     ctx.lineTo(p.x, p.y);
 
                     //draw outer arc
                     startAngle = toRad(90);
                     anticlockwise = true;
                     endAngle = toRad(90 - spoke.a);
-                    ctx.arc(bx, by, radius_b, endAngle , startAngle, !anticlockwise);
+                    ctx.arc(bx, by, radius_b, endAngle, startAngle, !anticlockwise);
 
                     x = bx;
                     y = by + radius_b;
@@ -509,24 +649,20 @@ module.directive('spoke', ['$compile', function ($compile) {
                         dx = dt;
                         dy = (spoke.t0 * m) * (i % 2);
                         x = x - dx;
-                        ctx.lineTo(x, y + (dy ));
+                        ctx.lineTo(x, y + (dy));
                     }
                 }
 
             }
 
-            function draw_arc(ctx, p0, p1, r, sign) {
 
-            }
 
-            function create_pattern() {
+            function create_pattern(target) {
                 var canvas = document.createElement('canvas'),
-
-
                     ctx,
                     m = 5, x = 5;
 
-                document.body.append(canvas);
+                document.body.appendChild(canvas);
                 canvas.width = 20;
                 canvas.height = 20;
 
@@ -542,7 +678,11 @@ module.directive('spoke', ['$compile', function ($compile) {
                 ctx.stroke();
                 ctx.closePath();
 
-                return canvas;
+                var pattern = target.createPattern(canvas, 'repeat');;
+
+                document.body.removeChild(canvas);
+
+                return pattern;
             }
 
             function rotate(ax, ay, bx, by, rad, anticlockwise) {
