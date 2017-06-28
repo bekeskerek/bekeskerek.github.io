@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <title>Békés Kerék, Спицы под индивидуальный заказ</title>
+    <meta name="description" content="Békés Kerék индивидуально производим высококачественные спицы для мотоциклов всех марок, старинных автомобилей.">
+    <meta name="keywords" content="спицы под индивидуальный заказ, спицы для мотоциклов, спицы для старинных автомобилей">
+    <meta property="og:title" content="Békés Kerék, Спицы под индивидуальный заказ" />
+    <meta property="og:url" content="http://www.bekeskerek.com/ru" />
+    <meta property="og:type" content="company" />
+    <meta property="og:description" content="Békés Kerék индивидуально производим высококачественные спицы для мотоциклов всех марок, старинных автомобилей."
+    />
+    <meta property="og:image" content="" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Jacques+Francois+Shadow" rel="stylesheet">
+    <script src="/scripts/vendor/angular.min.js" type="application/javascript"></script>
+    <script src="/scripts/vendor/angular-route.min.js" type="application/javascript"></script>
+    <script src="/scripts/vendor/angular-sanitize.min.js" type="application/javascript"></script>
+    <script src="/scripts/vendor/angular-translate.min.js" type="application/javascript"></script>
+    <script src="/scripts/vendor/angular-translate-loader-static-files.min.js" type="application/javascript"></script>
+    <script src="/scripts/js/app.js" type="application/javascript"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-101779563-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+    <div app ng-controller="mainCtrl">
+        <header class="dark">
+            <div class="container padding-sides">
+                <div class="left">
+                    <h1 class="heading fancy">Békés-Kerék</h1>
+                </div><div class="right">
+                    <div class="menu">
+                        <h3 class="subheading"><a ng-click="$root.paralax.move($event,'contact')">Контакты</a></h3>
+                        <select name="lang" id="lang" class="dark" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div>
+
+            <section class="hero-section" paralax-track>
+                <div class="layout-fill hero">
+                    <div class="layout-fill hero-video">
+                        <video src="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.mp4" poster="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.jpg"
+                            preload autoplay loop></video>
+                    </div>
+
+                    <!--<div class="hero-text container" paralax-layer="-50" paralax-offset="0%">
+                <h1 class="heading">{{'TITLE' | translate }}</h1>               
+            </div>-->
+                    <!--<div class="hero-text container">
+                <div class="logo"></div>
+            </div>-->
+                </div>
+            </section>
+
+            <section paralax-track>
+                <div class="container padding-sides">
+                    <div>
+                        <h2>Приветствую!!!</h2>
+                        <p>Меня зовут Чотари Шандор. Будучи мотогонщиком-ветераном я заметил, что на круглосуточных соревнованиях
+                            есть потребность в спицах хорошего качества. Наша компания это семейный бизнес, который с 1998
+                            года занимается изготовлением спиц для мотоциклов и стариннных автомобилей, а также ниппелей
+                            к спицам. Первоначально мы производили спицы только как запчасти, но через некоторое время появилась
+                            необходимость в их профессиональной установке, поэтому мы расширили поле нашей деятельности.
+                            ООО «Békés-Kerék» возникло в 2005 году в результате сотрудничества моего отца, моего младшего
+                            брата и меня. С течением времени наш семейный бизнес изготовил спицы для множества марок мотоциклов
+                            и старинных автомобилей, будь это мотоцикл «Паннония» или автомобиль «Бугатти». За истёкшее время,
+                            постоянно развиваясь, мы стараемся удовлетворять индивидуальные потребности наших заказчиков.</p>
+                    </div>
+                </div>
+            </section>
+            <section paralax-track class="transparent dark-text">
+                <div class="fixed layout-fill cofe-racer">
+
+                </div>
+                <div class="container padding-sides">
+                    <h2 class="block-head">СПИЦЫ ПОД ИНДИВИДУАЛЬНЫЙ ЗАКАЗ</h2>
+                    <!--<div class="left">
+
+            </div>
+            <div class="right">
+               
+            </div>-->
+
+                </div>
+            </section>
+
+            <section paralax-track>
+                <div class="container padding-sides">
+                    <h2 class="block-head">НАША ПРОДУКЦИЯ</h2>
+                    <ul>
+                        <li>Диаметры спиц : 2,5 мм; 3,0 мм; 3,5 мм; 4,0 мм; 4,5 мм</li>
+                        <li>Длина спицы, диаметр ниппеля, изгиб хвостика и его длина изготавливаются индивидуально к потребностям
+                            заказчика.</li>
+                        <li>Головка спицы изготовлена способом холодного прессования, а резьба – накатанная.</li>
+                        <li>Покрытие спиц может быть «без покрытия» или «оцинкованное».</li>
+                        <!--<li>{{'B5' | translate}}</li>
+                <li>{{'B6' | translate}}</li>-->
+                    </ul>
+                </div>
+            </section>
+
+            <section paralax-track>
+                <div class="container padding-sides">
+                    <div>
+                        <p>При заказе просим указать точные параметры спиц согласно табличке ниже.</p>
+                        <p>Минимальный заказ спиц 20 штук, потому что спицы изготавливаются индивидуально. Сроки изготовления
+                            спиц в зависимости от заказа приблизительно 2-3 недели плюс доставка.</p>
+                    </div>
+                    <div spoke></div>
+                </div>
+            </section>
+
+            <section id="contact" paralax-track>
+                <div class="container padding-sides">
+                    <p>УВАЖАЕМЫЕ гости нашего сайта из стран бывшего СНГ, которых интересует изготовление мотоспиц под заказ.
+                        Просьба обращаться к нашему официальному представителю по странах бывшего СНГ Мигович Аттиле, маил-адрес
+                        <a href=\ "mailto:istenostora68@ukr.net\">istenostora68@ukr.net</a></p>
+                </div>
+            </section>
+        </div>
+        <footer>
+            <div class="container padding-sides">
+
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
