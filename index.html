@@ -1,5 +1,5 @@
 <!doctype html>
-<html >
+<html>
 
 <head>
     <title>Békéskerék BT, Egyedi küllők</title>
@@ -31,7 +31,8 @@
             <div class="container padding-sides">
                 <div class="left">
                     <h1 class="heading fancy">{{'ORG' | translate }}</h1>
-                </div><div class="right">
+                </div>
+                <div class="right">
                     <div class="menu">
                         <h3 class="subheading"><a ng-click="$root.paralax.move($event,'contact')">{{'CONTACT_MENU' | translate }}</a></h3>
                         <select name="lang" id="lang" class="dark" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
@@ -42,7 +43,7 @@
         <div ng-view></div>
         <footer>
             <div class="container padding-sides">
-                
+
             </div>
         </footer>
     </div>
@@ -55,17 +56,21 @@
     <section class="hero-section" paralax-track>
         <div class="layout-fill hero">
             <div class="layout-fill hero-video">
-                <video src="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.mp4" poster="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.jpg" preload autoplay loop></video>
+                <video src="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.mp4" poster="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.jpg"
+                    preload autoplay loop></video>
             </div>
-            
-            <div class="hero-text container" paralax-layer="-50" paralax-offset="0%">
-                <h1 class="heading">{{'TITLE' | translate }}</h1>
-            </div>
+
+            <!--<div class="hero-text container" paralax-layer="-50" paralax-offset="0%">
+                <h1 class="heading">{{'TITLE' | translate }}</h1>               
+            </div>-->
+            <!--<div class="hero-text container">
+                <div class="logo"></div>
+            </div>-->
         </div>
     </section>
-    
+
     <section paralax-track>
-        <div class="container padding-sides">            
+        <div class="container padding-sides">
             <div ng-bind-html="'P1' | translate"></div>
         </div>
     </section>
@@ -101,8 +106,8 @@
 
     <section paralax-track>
         <div class="container padding-sides">
-           <div ng-bind-html="'P2' | translate"></div>
-           <div spoke></div> 
+            <div ng-bind-html="'P2' | translate"></div>
+            <div spoke></div>
         </div>
     </section>
 
