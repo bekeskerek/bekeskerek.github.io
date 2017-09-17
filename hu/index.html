@@ -17,10 +17,10 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,500&amp;subset=cyrillic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300&amp;subset=cyrillic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Jacques+Francois+Shadow" rel="stylesheet">
-    
+
     <link rel="alternate" hreflang="en" href="http://www.bekeskerek.com" />
     <link rel="alternate" hreflang="ru" href="http://www.bekeskerek.com/ru" />
-    
+
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -40,7 +40,8 @@
             <div class="container padding-sides">
                 <div class="left">
                     <h1 class="heading fancy">Békés-Kerék BT</h1>
-                </div><div class="right">
+                </div>
+                <div class="right">
                     <div class="menu">
                         <h3 class="subheading"><a ng-click="$root.paralax.move($event,'contact')">Kapcsolat</a></h3>
                         <select name="lang" id="lang" class="dark" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
@@ -100,17 +101,54 @@
             <section paralax-track>
                 <div class="container padding-sides">
                     <h2 class="block-head">TERMÉKEINK</h2>
-                    <ul>
-                        <li>Küllők 2,5mm; 3,0mm; 3,5mm; 4,0mm; 4,5mm átmérőkben.</li>
-                        <li>A nyakon lévő hajtás és a küllő hossza a megrendelő egyedi igénye szerint készül.</li>
-                        <li>A küllő feje hidegen kovácsolt, a menet pedig mángorolt.</li>
-                        <li>Felülete lehet bevonat nélküli, horganyzott, króm.</li>
-                        <!--<li>{{'B5' | translate}}</li>
-                <li>{{'B6' | translate}}</li>-->
-                    </ul>
+                    <div class="left">
+                        <ul>
+                            <li>Küllők 2,5mm; 3,0mm; 3,5mm; 4,0mm; 4,5mm átmérőkben.</li>
+                            <li>A nyakon lévő hajtás és a küllő hossza a megrendelő egyedi igénye szerint készül.</li>
+                            <li>A küllő feje hidegen kovácsolt, a menet pedig mángorolt.</li>
+                            <li>Felülete lehet bevonat nélküli, horganyzott, króm.</li>
+                        </ul>
+                    </div><div class="right">
+                        <img class="inline-img" src='/images/wheel.jpg'>
+                    </div>
                 </div>
             </section>
+            <section paralax-track>
+                <div class="container padding-sides">
+                    <div>
+                        <h2>Technologia</h2>
+                        <p>
+                            A küllőgyártó gépre a tekercset felhelyezve görősoron keresztül egyengetjük majd méretre vágjuk és ezzel egyidőben kerül
+                            fel a fej hideg kovácsolási eljárással. A hideg kovácsolás erősíti a küllő anyagszerkezetét.
+                            <br> Ezután a megrendelő igényének megfelelően meghajtjuk a küllő nyakát. A következő lépésben
+                            a menet mángorlási eljárással kerül a küllőre. Ez azért előnyös mert a menet készítése során
+                            nem szakad meg az anyag szálszerkezete.
+                        </p>
+                    </div>
+                    <div >
+                        <h2>Alapanyag</h2>
+                        <p>Az alapanyag lágy szén acél huzal C-26D. Szakítószilárdsága átmérőtől függően kb 900N/mm2. Ez 100kg-os
+                            tekercsekben érkezik a huzalműből bevonat nélkül és kiváló minősége miatt nem igényel további
+                            felületi megmunkálást. A kész terméket vegyi tisztítás után galvanizálhuk hogy a megmunkálás
+                            során a felületi kezelés ne sérüljön.
+                            <br>
+                        </p>                        
+                    </div>
+                    <div>
+                        <h2>Erősített küllők</h2>
+                        <p>A gyártási technológiánkat folyamatosan fejlesztjuk és a közelmúltban vezettük be az erősített küllök
+                            gyártását. Ennek előnye, hogy két anyagminőséget képes egyben ötvözni a fej hajtásánál egy vastagabb
+                            (5,25mm) és lágyabb, ámde rugalmasabb. A hosszú egynes száránál vékonyabb (4,5mm) és nagyobb
+                            szakító szilárdásgú anyag található. Teherbírása növekszik miközben a küllő súlya csökken.
+                            <br>
+                        </p>
+                    </div>
+                    <div>
+                        <p>Küllők ára típustól és mérettől függően 0,5-1,50 euró / db között van, anyával együtt.</p>
+                    </div>
 
+                </div>
+            </section>
             <section paralax-track>
                 <div class="container padding-sides">
                     <div>
@@ -139,9 +177,9 @@
 
 
     <script src="/scripts/vendor/angular.min.js" type="application/javascript"></script>
-  
+
     <script src="/scripts/js/app.js" type="application/javascript"></script>
-    
+
 </body>
 
 </html>
