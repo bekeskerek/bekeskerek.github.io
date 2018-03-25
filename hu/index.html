@@ -40,8 +40,7 @@
             <div class="container padding-sides">
                 <div class="left">
                     <h1 class="heading fancy">Békés-Kerék BT</h1>
-                </div>
-                <div class="right">
+                </div><div class="right">
                     <div class="menu">
                         <h3 class="subheading"><a ng-click="$root.paralax.move($event,'contact')">Kapcsolat</a></h3>
                         <select name="lang" id="lang" class="dark" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
@@ -103,15 +102,14 @@
                     <h2 class="block-head">TERMÉKEINK</h2>
                     <div class="left">
                         <ul>
-                            <li>Küllők 2,5mm; 3,0mm; 3,5mm; 4,0mm; 4,5mm átmérőkben.</li>
+                            <li>Küllők 2,5mm; 3,0mm; 3,5mm; 4,0mm; 4,5mm; 5,0mm; 5,25mm átmérőkben.</li>
                             <li>A nyakon lévő hajtás és a küllő hossza a megrendelő egyedi igénye szerint készül.</li>
                             <li>A küllő feje hidegen kovácsolt, a menet pedig mángorolt.</li>
                             <li>Felülete lehet bevonat nélküli, horganyzott, króm.</li>
                         </ul>
                     </div><div class="right">
                         <img class="inline-img" src='/images/wheel.jpg'>
-                    </div>
-                    <div>
+                    </div><div>
                         <div class="left">
                                 <img class="inline-img" src='/images/kullo_s.jpg'>
                             </div><div class="right">
@@ -137,7 +135,7 @@
                         <h2>Alapanyag</h2>
                         <p>Az alapanyag lágy szén acél huzal C-26D. Szakítószilárdsága átmérőtől függően kb 900N/mm2. Ez 100kg-os
                             tekercsekben érkezik a huzalműből bevonat nélkül és kiváló minősége miatt nem igényel további
-                            felületi megmunkálást. A kész terméket vegyi tisztítás után galvanizálhuk hogy a megmunkálás
+                            felületi megmunkálást. A kész terméket vegyi tisztítás után galvanizáljuk  hogy a megmunkálás
                             során a felületi kezelés ne sérüljön.
                             <br>
                         </p>                        
@@ -168,7 +166,7 @@
                             
                             <p>A rendelés leadásakor kérem adja meg a küllő pontos paramétereit az alábbi diagram alapján:</p>
                     </div>
-                    <div spoke></div>
+                    <div spoke nut-label="Anya"></div>
                 </div>
             </section>
 
