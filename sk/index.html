@@ -3,7 +3,8 @@
 
 <head>
     <title>Békéskerék BT, Egyedi küllők</title>
-    <meta name="description" content="VÝROBA JEDINEČNÝCH ŠPICOV - PODĽA POŽIADAVIEK ZÁKAZNÍKA PRE MOTOCYKLE, VETERÁNOV.">
+    <meta name="description"
+        content="VÝROBA JEDINEČNÝCH ŠPICOV - PODĽA POŽIADAVIEK ZÁKAZNÍKA PRE MOTOCYKLE, VETERÁNOV.">
     <!-- <meta name="keywords" content="egyedi küllők,motorkerékpár küllők,veterán autó küllők,kerekek,felnik"> -->
     <meta property="og:title" content="Békés-Kerék BT, Egyedi Küllők" />
     <meta property="og:url" content="http://www.bekeskerek.com/sk" />
@@ -37,14 +38,18 @@
 <body>
     <div app ng-controller="mainCtrl">
         <header class="dark">
-            <div class="container padding-sides">
-                <div class="left">
+            <div class="container padding-sides layout-row">
+                <div class="">
                     <h1 class="heading fancy">Békés-Kerék BT</h1>
-                </div><div class="right">
+                </div>
+                <div class="flex"></div>
+                <div class="">
                     <div class="menu">
                         <h3 class="subheading"><a ng-click="$root.paralax.move($event,'contact')">Kontakt</a></h3>
                         <h3 class="subheading"><a href="/sk/gallery/">Galéria</a></h3>
-                        <select name="lang" id="lang" class="dark" ng-model="model.lang" ng-change="changeLang(model.lang.id)" ng-options="c as c.label for c in model.langs"></select>
+                        <select name="lang" id="lang" class="dark" ng-model="model.lang"
+                            ng-change="changeLang(model.lang.id)"
+                            ng-options="c as c.label for c in model.langs"></select>
                     </div>
                 </div>
             </div>
@@ -54,7 +59,8 @@
             <section class="hero-section" paralax-track>
                 <div class="layout-fill hero">
                     <div class="layout-fill hero-video">
-                        <video src="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.mp4" poster="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.jpg"
+                        <video src="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.mp4"
+                            poster="https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.jpg"
                             preload autoplay loop muted></video>
                     </div>
 
@@ -68,20 +74,25 @@
                     <div class="left">
                         <ul>
                             <li>Špice 2,5mm, 3,0mm, 3,5mm, 4,0mm, 4,5mm, 5,0mm, 5,25mm priemerom.</li>
-                            <li>Ohyb a dĺžka pri hlave a dĺžka špicov sú prispôsobené individuálnym potrebám zákazníka.</li>
+                            <li>Ohyb a dĺžka pri hlave a dĺžka špicov sú prispôsobené individuálnym potrebám zákazníka.
+                            </li>
                             <li>Hlava špicov je kovaná za studena a závit je valcovaný.</li>
                             <li>Povrch môže byť surový, pozinkovaný.</li>
-                            <li>Matice špicu /veľkosť štvorca a valcový priemer medzi hlavou/ 5,0 mm, 5,3 mm, 6,0 mm, 6,5 mm, 7,0 mm, 7,5 mm.</li>
+                            <li>Matice špicu /veľkosť štvorca a valcový priemer medzi hlavou/ 5,0 mm, 5,3 mm, 6,0 mm,
+                                6,5 mm, 7,0 mm, 7,5 mm.</li>
                         </ul>
-                    </div><div class="right">
+                    </div>
+                    <div class="right">
                         <img class="inline-img" src='/images/wheel.jpg'>
-                    </div><div>
+                    </div>
+                    <div>
                         <div class="left">
-                                <img class="inline-img" src='/images/kullo_s.jpg'>
-                            </div><div class="right">
-                                    <img class="inline-img" src='/images/anya_s.jpg'>
-                            </div>
-                        
+                            <img class="inline-img" src='/images/kullo_s.jpg'>
+                        </div>
+                        <div class="right">
+                            <img class="inline-img" src='/images/anya_s.jpg'>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -139,7 +150,8 @@
 
             <section id="contact" paralax-track>
                 <div class="container padding-sides">
-                    <p>Obrátiť sa môžete na nasledujúcu emailovú adresu: <a href="mailto:laco@motoshop-laco.sk">laco@motoshop-laco.sk</a> alebo na
+                    <p>Obrátiť sa môžete na nasledujúcu emailovú adresu: <a
+                            href="mailto:laco@motoshop-laco.sk">laco@motoshop-laco.sk</a> alebo na
                         <br>☎ tel č: <a href="tel:+421907870729">+421 907 870 729</a></p>
                 </div>
             </section>
