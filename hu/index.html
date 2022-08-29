@@ -37,6 +37,10 @@
 
 <body>
     <div app ng-controller="mainCtrl">
+        <div style="background-color: #aa0000; color:white; padding:32px;font-size:24px;"
+            class="layout-row layout-center-center">
+            <span>Nyersanyag hiány miatt jelenleg nem fogadunk el rendelést!</span>
+        </div>
         <header class="dark">
             <div class="container padding-sides layout-row">
                 <div class="">
@@ -45,7 +49,7 @@
                 <div class="flex"></div>
                 <div class="">
                     <div class="menu">
-                        <h3 class="subheading"><a href="http://bolt.bekeskerek.com/">Bolt</a></h3>
+                        <!-- <h3 class="subheading"><a href="http://bolt.bekeskerek.com/">Bolt</a></h3> -->
                         <h3 class="subheading"><a href="/hu/#contact">Kapcsolat</a></h3>
                         <h3 class="subheading"><a href="/hu/gallery/">Galéria</a></h3>
                         <select name="lang" id="lang" class="dark" ng-model="model.lang"
@@ -56,7 +60,6 @@
             </div>
         </header>
         <div>
-
             <section class="hero-section" paralax-track>
                 <div class="layout-fill hero">
                     <div class="layout-fill hero-video">
