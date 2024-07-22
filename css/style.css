@@ -1060,7 +1060,7 @@ footer {
 }
 
 .hero-section .hero-video {
-    background-image: url(https://stormcraft.blob.core.windows.net/bekeskerek/videos/machine-optimized.jpg);
+    background-image: url(/videos/machine-optimized.jpg);
     filter: sepia(60%) saturate(60%)
 }
 
