@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Bekes-Kerek, Custom Spokes</title>
+    <meta name="description" content="We manufacture custom spokes for motorcycles and vintage cars.">
+    <meta name="keywords" content="custom spokes,motorcycle spokes,car spokes,wheels,rims">
+    <meta property="og:title" content="Bekes-Kerek, Custom Spokes" />
+    <meta property="og:url" content="http://www.bekeskerek.com" />
+    <meta property="og:type" content="company" />
+    <meta property="og:description" content="We manufacture custom spokes for motorcycles and vintage cars." />
+    <meta property="og:image" content="" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Jacques+Francois+Shadow" rel="stylesheet">
+
+    <link rel="alternate" hreflang="hu" href="http://www.bekeskerek.com/hu" />
+    <link rel="alternate" hreflang="ru" href="http://www.bekeskerek.com/ru" />
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-101779563-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+    <div app ng-controller="mainCtrl">
+
+        <header class="dark" style="height:auto;">
+            <!-- <div style="background-color: #aa0000; color:white; font-size:18px;"
+                class="layout-row layout-center-center">
+                <span>Due to supply issues we currently cannot accept new orders.</span>
+            </div> -->
+            <div class="container padding-sides layout-row">
+                <div class="">
+                    <h1 class="heading fancy">Bekes-Kerek BT</h1>
+                </div>
+                <div class="flex"></div>
+                <div class="">
+                    <div class="menu">
+                        <h3 class="subheading"><a ng-click="$root.paralax.move($event,'contact')">Contact</a></h3>
+                        <h3 class="subheading"><a href="/gallery/">Gallery</a></h3>
+                        <select name="lang" id="lang" class="dark" ng-model="model.lang"
+                            ng-change="changeLang(model.lang.id)"
+                            ng-options="c as c.label for c in model.langs"></select>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div>
+
+            <section class="hero-section" paralax-track>
+                <div class="layout-fill hero">
+                    <div class="layout-fill hero-video">
+                        <video src="/videos/machine-optimized.mp4" poster="/videos/machine-optimized.jpg" preload
+                            autoplay loop muted></video>
+                    </div>
+
+                    <!--<div class="hero-text container" paralax-layer="-50" paralax-offset="0%">
+                <h1 class="heading">{{'TITLE' | translate }}</h1>               
+            </div>-->
+                    <!--<div class="hero-text container">
+                <div class="logo"></div>
+            </div>-->
+                </div>
+            </section>
+
+            <section paralax-track>
+                <div class="container padding-sides">
+                    <div>
+                        <h2>Welcome! </h2>
+                        <p> My name is Sándor Csatári. As a veteran motor racer we have noticed that there is a need for
+                            24 hour
+                            reliability races on high-quality spokes. Our company is a family enterprise that has been
+                            dealing
+                            with the manufacture of spokes for motor bicycles and cars since 1998. At the beginning we
+                            produced
+                            only parts, but after a short time there was a great demand for professional installation,
+                            so
+                            we expanded our business. Békés-Wheel Bt was founded in 2005 with my father and brother.
+                            Over
+                            the years, our family business has been manufacturing dozens of veteran car and engine types
+                            from Pannónia motorcycles to Bugatties. By the time we have done so, we strive to meet our
+                            customers
+                            unique needs with continuous technological development. </p>
+                    </div>
+                </div>
+            </section>
+            <section paralax-track class="transparent dark-text">
+                <div class="fixed layout-fill cofe-racer">
+
+                </div>
+                <div class="container padding-sides">
+                    <h2 class="block-head">CUSTOM SPOKES AND NIPPLES</h2>
+
+                    <!--<div class="left">
+
+            </div>
+            <div class="right">
+               
+            </div>-->
+
+                </div>
+            </section>
+
+            <section paralax-track>
+                <div class="container padding-sides">
+                    <h2 class="block-head">WHAT YOU CAN BUY</h2>
+                    <ul>
+                        <li>Spokes in 2,5mm; 3,0mm; 3,5mm; 4,0mm; 4,5mm diameter.</li>
+                        <li>The bend and the length of the neck is customizable.</li>
+                        <li>The head is cold forged and the thread is rolled.</li>
+                        <li>The surface can be untreated, galvanized.</li>
+                        <!--<li>{{'B5' | translate}}</li>
+                <li>{{'B6' | translate}}</li>-->
+                    </ul>
+                </div>
+            </section>
+
+            <section paralax-track>
+                <div class="container padding-sides">
+                    <div>
+                        <p> When ordering, please give the exact parameters of the spokes using the chart below. </p>
+                        <p> Diameter and thread is made with metric measurements. Minimum
+                            order quantity 40 pcs of spokes (one wheel) Since the spokes are custom made, the delivery
+                            time
+                            is 2-3 weeks + shipping depending on the order. </p>
+                    </div>
+                    <div spoke></div>
+                </div>
+            </section>
+
+            <section id="contact" paralax-track>
+                <div class="container padding-sides">
+                    <p>Contact us on the following email: <a
+                            href=\ "mailto:sandor@bekeskerek.com\">sandor@bekeskerek.com</a></p>
+                </div>
+            </section>
+        </div>
+        <footer>
+            <div class="container padding-sides note">
+                <h2>Are you an existing custmer?</h2>
+                <p>This website is rather new and we would like to expand it with photos of all the cool things produced
+                    spokes for. Let it be a vintage car, a motorcycle or a velocipede. If you are satisfied with our
+                    products and you agree to post a photo of your vehicle please <a
+                        href=\ "mailto:sandor@bekeskerek.com\">send us an email</a><br>Thank you.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="/scripts/vendor/angular.min.js" type="application/javascript"></script>
+
+    <script src="/scripts/js/app.js" type="application/javascript"></script>
+
+</body>
+
+</html>
