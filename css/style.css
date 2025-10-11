@@ -1157,3 +1157,10 @@ footer {
 .gallery .img img {
     width: 100%
 }
+
+.wide {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: block
+}
