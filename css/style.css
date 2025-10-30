@@ -1164,3 +1164,12 @@ footer {
     margin: auto;
     display: block
 }
+
+.warning {
+    border: 2px solid #ff8700;
+    border-radius: 8px;
+    background-color: #ffe582;
+    padding: 16px;
+    font-weight: 400;
+    color: #d10000;
+}
